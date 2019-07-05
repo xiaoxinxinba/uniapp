@@ -53,6 +53,10 @@
             "path" : "pages/kp_detail/kp_detail",
             "style" : {}
         }
+        ,{
+            "path" : "pages/file/file",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

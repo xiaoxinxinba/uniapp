@@ -3,7 +3,7 @@
 		<view class="text">
 			<textarea value="" placeholder="请描述你的年龄、性别、症状及就诊经历，便于医生进行准确分析，我们会确保你的隐私" placeholder-style="font-size:18px;color:#999;line-height:25px;width:100%;" maxlength="500"/>
 			<view class="upload">
-				<view class="load">
+				<view class="load" @click="chooseImage">
 					<image src="../../static/image/xj.png" ></image>
 				</view>
 				<view class="text">
@@ -27,7 +27,42 @@
 			
 		},
 		methods: {
-			
+			chooseImage: function() {
+				uni.chooseImage({
+					count: 1,
+					sizeType: ['compressed'],
+					sourceType: ['album'],
+					success: (res) => {
+						// console.log('chooseImage success, temp path is', res.tempFilePaths[0])
+						var imageSrc = res.tempFilePaths[0]
+						uni.uploadFile({
+							url: 'https://unidemo.dcloud.net.cn/upload',
+							filePath: imageSrc,
+							fileType: 'image',
+							name: 'data',
+							success: (res) => {
+								// console.log('uploadImage success, res is:', res)
+								uni.showToast({
+									title: '上传成功',
+									icon: 'success',
+									duration: 1000
+								})
+								this.imageSrc = imageSrc
+							},
+							fail: (err) => {
+								console.log('uploadImage fail', err);
+								uni.showModal({
+									content: err.errMsg,
+									showCancel: false
+								});
+							}
+						});
+					},
+					fail: (err) => {
+						// console.log('chooseImage fail', err)
+					}
+				})
+			}
 		}
 	}
 </script>

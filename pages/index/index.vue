@@ -43,7 +43,7 @@
 		</view>	
 	<view class="section">
 		<!-- 提问 -->
-		<view class="finddoctor" @tap="tomessage">
+		<view class="finddoctor" @tap="tonew_file">
 			<h2>身体小问题？快速问医生</h2>
 			<h4>三甲医院主治及以上医师，已解答<span>120万</span>个问题</h4>
 			<button type="primary" >立即提问</button>
@@ -119,7 +119,7 @@
 				});
 			},
 			//提问，问诊
-			tomessage(){
+			tonew_file(){
 				uni.navigateTo({
 					url: '../message/message',
 				});
